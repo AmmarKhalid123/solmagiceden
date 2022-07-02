@@ -84,8 +84,8 @@ function HomePage() {
   return (
   <>
   <div className="homeMain">
-    <div className="container">
-      <div className="row">
+    <div className="container-fluid">
+      <div className="row mx-0">
         <div className=" col-lg-3 ">
             <div className="dropDownCard">
                 <button className='title btn'>MENU <i className="far fa-ellipsis-h"></i></button>
@@ -178,17 +178,17 @@ function HomePage() {
             <Slider1 {...settings1}>
               <div>
               <div className="row">
-                <div className="col-6">
+                <div className="col-xl-6 col-md-7 col-12 my-3">
                   <div className="col1">
-                    <img className='img-fluid mp1' src={clean1} alt="" />
+                    <img className='mp1' src={clean1} alt="" />
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-xl-3 col-md col-6 my-3">
                   <div className="col1">
                     <img className='img-fluid' src={clean2} alt="" />
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-xl-3 col-md col-6 my-3">
                   <div className="col1">
                     <img className='img-fluid' src={clean3} alt="" />
                   </div>
@@ -198,22 +198,22 @@ function HomePage() {
               <div>
               <div className="row">
                
-                <div className="col-3">
+                <div className="col-xl-3 col-md col-6 my-3">
                   <div className="col1">
                     <img className='img-fluid' src={clean2} alt="" />
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-xl-3 col-md col-6 my-3">
                   <div className="col1">
                     <img className='img-fluid' src={clean3} alt="" />
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-xl-3 col-md col-6 my-3">
                   <div className="col1">
                     <img className='img-fluid' src={clean2} alt="" />
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-xl-3 col-md col-6 my-3">
                   <div className="col1">
                     <img className='img-fluid' src={clean3} alt="" />
                   </div>
