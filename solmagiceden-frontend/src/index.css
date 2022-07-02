@@ -160,60 +160,7 @@
     .navbar .inputDiv input:focus{
        outline: none;
     }
-  
-    @media(max-width:768px){
-        .descBanner  .writeReviewDiv{
-            text-align: center;
-            margin-top: 20px;
-        }
-    .descBanner .descBannerLink{
-        flex-direction: column;
-    }
-    .descBanner .descBannerLinkContainer{
-    
-        flex-direction: column;
-    }  
-    .descBanner .descBannerContent{
-        margin-top: -330px;
-    }
-     
-    .slide-content{
-        display: none !important;
-    }
-    .silde-inside{
-        padding: 10px !important;
-       }
-  
-  
-  
- 
 
-    .ai-center-small{
-        align-items: center;
-    }
-   
-  
-    /* .navbar-brand h3{
-        display: none;
-    } */
-    }
- 
-    
-    @media(max-width:540px){
-        .react-3d-carousel{
-            height:290px !important;
-        }
-        .slide-image-box img{
-           height: auto !important;
-        }
-        .silde-inside{
-            height: 290px !important;
-        }
-        .slide-image-box{
-            max-height: -webkit-fill-available;
-        }
-     
-    }
    
     .connect-wallet-smal{
 
@@ -854,7 +801,7 @@ input[type="file"] {
     margin-top: 20px;
   }
   .homeMain .mostpopularSec .popularSlider {
-    max-height: 243px;
+    /* max-height: 243px; */
     width: 100%;
   }
   .homeMain .mostpopularSec .popularSlider img{
@@ -1088,9 +1035,22 @@ text-decoration: none;
 
  
 
-@media(min-width:1400px){
+@media(min-width:1600px){
     .profilePageMain .editMain {
         /* max-width: 1155px; */
+    }
+    .homeMain .mostpopularSec .popularSlider img {
+        max-height: 343px;
+    }
+}
+@media(max-width:1600px) and (min-width:1400px){
+    .homeMain .mostpopularSec .popularSlider img {
+        max-height: 300px;
+    }
+}
+@media(max-width:1400px) and (min-width:1200px){
+    .homeMain .mostpopularSec .popularSlider img {
+        max-height: 251px;
     }
 }
 @media(max-width:1200px) and (min-width:768px){
@@ -1100,7 +1060,7 @@ text-decoration: none;
 }
 @media(max-width:768px) and (min-width:576px){
     .homeMain .mostpopularSec .popularSlider .mp1{
-        max-height: 139px;
+        /* max-height: 139px; */
     }
 }
 @media(max-width:992px){
@@ -1116,6 +1076,64 @@ text-decoration: none;
         font-size: 34px;
         line-height: 33px;
     }
+}
+
+  
+@media(max-width:768px){
+    .homeMain .mostpopularSec .popularSlider img {
+        max-height: unset !important;
+    }
+    .descBanner  .writeReviewDiv{
+        text-align: center;
+        margin-top: 20px;
+    }
+.descBanner .descBannerLink{
+    flex-direction: column;
+}
+.descBanner .descBannerLinkContainer{
+
+    flex-direction: column;
+}  
+.descBanner .descBannerContent{
+    margin-top: -330px;
+}
+ 
+.slide-content{
+    display: none !important;
+}
+.silde-inside{
+    padding: 10px !important;
+   }
+
+
+
+
+
+.ai-center-small{
+    align-items: center;
+}
+
+
+/* .navbar-brand h3{
+    display: none;
+} */
+}
+
+
+@media(max-width:540px){
+    .react-3d-carousel{
+        height:290px !important;
+    }
+    .slide-image-box img{
+       height: auto !important;
+    }
+    .silde-inside{
+        height: 290px !important;
+    }
+    .slide-image-box{
+        max-height: -webkit-fill-available;
+    }
+ 
 }
 @media(max-width:500px){
 
