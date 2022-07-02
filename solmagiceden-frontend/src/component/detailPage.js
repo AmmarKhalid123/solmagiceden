@@ -113,7 +113,7 @@ function DetailPage() {
                         <img className='coverImg' src={`${process.env.REACT_APP_BASE_URL}/${user.cover}`} alt="banner" />
                     </div>
                     <div className="descBannerContent">
-                        <div className="container">
+                        <div className="container-fluid">
                         
                         <div className="descBannerLinkContainer" style={{visibility: authedUser.authedUser.address === user.address ? 'visible' : 'hidden'}}>
                           <div className="writeReviewDiv" onClick={changeCover}>
