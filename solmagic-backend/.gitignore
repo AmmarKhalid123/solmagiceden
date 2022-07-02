@@ -1,0 +1,9 @@
+config.js
+node_modules
+
+!/public/profile
+/public/profile/*
+!/public/profile/image_1.png
+!/public/covers
+/public/covers/*
+!/public/covers/image_1.png
