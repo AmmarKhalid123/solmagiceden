@@ -3,9 +3,9 @@ import searchIcon from '../images/searchIcon.svg'
 
 export const NavbarCustom = ({connectWallet, authedUser}) => {
   return (
-  <nav className="navbar navbar-light navbar-expand-lg  row mx-0  navFont pr-0 ai-center-lg"  style={{alignItems: 'flex-start'}}>
+        <nav className="navbar navbar-light navbar-expand-lg  row mx-0  navFont pr-0 ai-center-lg"  style={{alignItems: 'flex-start'}}>
           <div className=" col-md-4 col-lg-3 col-2 col-auto text-center p-0">
-            <a className="navbar-brand p-0" style={{marginTop: '-6px'}} href="#">
+            <a className="navbar-brand p-0" style={{marginTop: '-6px'}} href="/">
                 <h3 className="">Logo</h3>
                 {/* <img src={Logo} alt="Logo" />  */}
             </a>

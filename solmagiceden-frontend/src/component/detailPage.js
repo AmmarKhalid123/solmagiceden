@@ -15,6 +15,7 @@ import profile1 from "../images/profile1.jpg"
 // import Slider1 from '../component/slickSlider';  
 import { NavbarCustom } from './navbarCustom';
 import { loginUserReq, uploadCoverImage, uploadProfileImage } from '../redux/ActionCreators';
+import EditProfileModal from './editProfileModal';
 
 var moment = require('moment-timezone');
 
@@ -84,6 +85,9 @@ function DetailPage() {
     }
   }
 
+  const openWindow = (url ) => {
+    window.open(url.startsWith('http') ? url : `https://${url}`);
+  }
 
   if (loadingUser){
     return(
@@ -103,7 +107,7 @@ function DetailPage() {
               {/* banner */}
               {true}
               <div className="profilePageMain">
-                <div className="container">
+                <div className="container-fluid">
                   <div className="descBanner">
                     <div className="imgDiv">
                         <img className='coverImg' src={`${process.env.REACT_APP_BASE_URL}/${user.cover}`} alt="banner" />
@@ -147,19 +151,25 @@ function DetailPage() {
                           </div>
                       </div>
                       <div className='col2'>
+                        {authedUser.authedUser.address === user.address ? (
                         <div className="writeReviewDiv" onClick={() => handleShow(true)}>
-                            <div className="editProfBtn" >Edit Profile <img className='ml-2' src={editIcon} alt="" /> </div>
+                          <div className="editProfBtn" >Edit Profile <img className='ml-2' src={editIcon} alt="" /> </div>
                         </div>
-                        <div className="writeReviewDiv ml-2">
+                        ) : (<></>)}
+                        {user.discord ? (
+                        <div className="writeReviewDiv ml-2" onClick={() => openWindow(user.discord)}>
                             <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} />
                               <input type="file" />
                             </label>
                         </div>
-                        <div className="writeReviewDiv ml-2">
+                        ) : (<></>)}
+                        {user.twitter ? (
+                          <div className="writeReviewDiv ml-2" onClick={() => openWindow(user.twitter)}>
                             <label className="editProfBtn" > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} />
                               <input type="file" />
                             </label>
-                        </div>
+                          </div>
+                        ) : (<></>)}
                       </div>
                     </div>
 
@@ -188,28 +198,7 @@ function DetailPage() {
                         </div>
                 </div>
               </div>
-
-            
-
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Edit Profile</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <div className="editForm">
-                    <div className="form-group">
-                      <input type="text" className="form-control" placeholder="User Name" />
-                    </div>
-                    <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Discord Name" />
-                    </div>
-                    <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Twitter" />
-                    </div>
-                    <button className='btn editBtn'>Submit</button>
-                  </div>
-                </Modal.Body>
-              </Modal>
+            <EditProfileModal show={show} handleClose={handleClose} setUser={setUser} />
         </>
     );
   }

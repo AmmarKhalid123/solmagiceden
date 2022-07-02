@@ -52,6 +52,28 @@ export const uploadCoverImage = (img, address) => dispatch => {
   })
 }
 
+export const updateUserProfile = (username, discord, twitter, uid) => dispatch => {
+  return fetch(`${process.env.REACT_APP_BASE_URL}/users/update-profile-details`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      discord,
+      twitter,
+      username,
+      uid
+    })
+  })
+  .then(r => r.json())
+  .then(res => {
+    console.log(res);
+    if (res.success){
+      return dispatch(updateUser(res.updated_user));
+    }
+  })
+}
+
 export const uploadProfileImage = (img, address) => dispatch => {
   let headers = new Headers();
 

@@ -35,16 +35,13 @@ var User = new Schema({
     }],
     default: []
   },
-  socialProfile: {
-    type: [{
-      media: {
-        type: String
-      },
-      url: {
-        type: String
-      }
-  }],
-  default: []
+  discord: {
+    type: String,
+    default: ''
+  },
+  twitter: {
+    type: String,
+    default: ''
   }
 }, {
     timestamps: true
