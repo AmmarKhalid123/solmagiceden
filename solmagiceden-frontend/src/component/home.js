@@ -86,13 +86,13 @@ function HomePage() {
   <div className="homeMain">
     <div className="container-fluid">
       <div className="row mx-0">
-        <div className=" col-lg-3 ">
+        <div className=" col-lg-3 p-xs-0">
             <div className="dropDownCard">
                 <button className='title btn'>MENU <i className="far fa-ellipsis-h"></i></button>
             </div>
 
             <div className="dropDownCard">
-              <button className="btn dropBtn title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+              <button className="btn dropBtn title" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
               <span>
                <img src={marketIcon} alt="" />  Marketplace
                 </span>
@@ -119,7 +119,7 @@ function HomePage() {
               </div>
             </div>
             <div className="dropDownCard">
-              <button className="btn dropBtn title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              <button className="btn dropBtn title" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                       
                       <span>
                        <img src={marketIcon} alt="" />  Insights
@@ -137,6 +137,7 @@ function HomePage() {
                 </div>
               </div>
             </div>
+            
         </div>
         <div className="col-lg-9">
           <section className='bannerSec'>

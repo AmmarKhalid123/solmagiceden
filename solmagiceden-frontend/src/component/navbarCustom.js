@@ -12,7 +12,7 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
           </div>
           <div className="order-md-2 order-3 toggle-icon-custom">
               <button className="navbar-toggler btn-btn-toggle" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                <i className="fa fa-bars" aria-hidden="true"></i>
               </button>
             </div>
           <div className="collapse navbar-collapse col-lg-6 jc-center collapse-nav" style={{fontWeight: 700, color: 'black'}} id="navbarNavAltMarkup">
