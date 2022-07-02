@@ -7,3 +7,9 @@ node_modules
 !/public/covers
 /public/covers/*
 !/public/covers/image_1.png
+<<<<<<< HEAD
+=======
+
+selfsigned.crt
+selfsigned.key
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127

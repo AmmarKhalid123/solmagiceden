@@ -222,6 +222,39 @@
 }
 
 
+<<<<<<< HEAD
+=======
+@media (max-width:576px){
+    .homeMain .mostpopularSec .volumeSlider .volumeCard {
+        display: inline-block;
+    }
+    .profilePageMain .nftCardMain .nftCard {
+        max-width: 350px;
+        margin: auto;
+        height:auto;
+        margin-bottom: 15px;
+    }
+  #slider{width:100%;
+  
+  }
+  
+
+  
+  #dots-con{
+    display:none;
+  }
+ 
+}
+@media(max-width:420px){
+    
+}
+@media(max-width:375px){
+  
+}
+@media(max-width:330px){
+   
+}
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
 .slide-heading{
 /* font-family: Somerton Dense; */
 font-style: normal;
@@ -318,7 +351,11 @@ transform: matrix(-1, 0, 0, 1, 0, 0);
     left: 200px;
 }
 .toggle-icon-custom i{
+<<<<<<< HEAD
     color: #fff;
+=======
+    color: #b0a895;
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
     font-size: 25px;
 }
 .toggle-icon-custom{
@@ -337,6 +374,7 @@ transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
 @media(max-width:992px){
+<<<<<<< HEAD
     .navbar .inputDiv {
         margin-top: 20px;
         max-width: 100%;
@@ -354,6 +392,9 @@ transform: matrix(-1, 0, 0, 1, 0, 0);
     .p-xs-0 {
         padding: 0 !important;
     }
+=======
+   
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
     .collapse-nav{
     position: relative;
     /* background-color: white; */
@@ -725,12 +766,19 @@ input[type="file"] {
     margin: 0;
     line-height: 1.5em;
     height: 21px;
+<<<<<<< HEAD
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     display: -webkit-inline-box;
+=======
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
     width: 100%;
   }
   .homeMain .bannerSec .slick-dots {
@@ -1068,6 +1116,7 @@ text-decoration: none;
 
   
 @media(max-width:768px){
+<<<<<<< HEAD
     .homeMain .bannerSec .bannerImgDiv .bannerContent {
         left: 5%;
         bottom: 0;
@@ -1076,6 +1125,8 @@ text-decoration: none;
     .homeMain .bannerSec .bannerImgDiv .bannerContent p {
 
     }
+=======
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
     .homeMain .mostpopularSec .popularSlider img {
         max-height: unset !important;
     }
@@ -1196,6 +1247,7 @@ text-decoration: none;
  
 }
 
+<<<<<<< HEAD
 
 @media (max-width:576px){
    
@@ -1256,6 +1308,8 @@ text-decoration: none;
    
 }
 
+=======
+>>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
 .ai-center{
     align-items: center !important;
 }
