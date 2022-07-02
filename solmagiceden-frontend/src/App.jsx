@@ -43,6 +43,7 @@ function App() {
         dispatch(loginUserReq(wallet._wallet.publicKey.toString()));  
       }
       catch(e){
+        console.log(e);
         alert('Unable to connect, try again!');
       }
       // }
