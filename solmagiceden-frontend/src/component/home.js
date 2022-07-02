@@ -86,21 +86,13 @@ function HomePage() {
   <div className="homeMain">
     <div className="container-fluid">
       <div className="row mx-0">
-<<<<<<< HEAD
         <div className=" col-lg-3 p-xs-0">
-=======
-        <div className=" col-lg-3 ">
->>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
             <div className="dropDownCard">
                 <button className='title btn'>MENU <i className="far fa-ellipsis-h"></i></button>
             </div>
 
             <div className="dropDownCard">
-<<<<<<< HEAD
               <button className="btn dropBtn title" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-=======
-              <button className="btn dropBtn title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
->>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
               <span>
                <img src={marketIcon} alt="" />  Marketplace
                 </span>
@@ -127,11 +119,8 @@ function HomePage() {
               </div>
             </div>
             <div className="dropDownCard">
-<<<<<<< HEAD
               <button className="btn dropBtn title" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-=======
-              <button className="btn dropBtn title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
->>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
+           
                       
                       <span>
                        <img src={marketIcon} alt="" />  Insights
@@ -149,10 +138,7 @@ function HomePage() {
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
-            
-=======
->>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
+
         </div>
         <div className="col-lg-9">
           <section className='bannerSec'>

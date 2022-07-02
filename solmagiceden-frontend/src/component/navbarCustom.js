@@ -12,11 +12,7 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
           </div>
           <div className="order-md-2 order-3 toggle-icon-custom">
               <button className="navbar-toggler btn-btn-toggle" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-<<<<<<< HEAD
                 <i className="fa fa-bars" aria-hidden="true"></i>
-=======
-                <i class="fa fa-bars" aria-hidden="true"></i>
->>>>>>> 175b6a75735c310ba27dbca2c3669a9572dfa127
               </button>
             </div>
           <div className="collapse navbar-collapse col-lg-6 jc-center collapse-nav" style={{fontWeight: 700, color: 'black'}} id="navbarNavAltMarkup">
@@ -27,7 +23,7 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
               
           </div>
           
-          <div className="col-lg-auto col-5 text-center order-md-3 order-1 connect-wallet-small px-0">
+          <div className="col-lg-auto  text-center order-md-3 order-1 connect-wallet-small px-0">
             <button className="btn color-white connectWalletBtn" onClick={connectWallet} >
               {Object.keys(authedUser.authedUser).length === 0 ? 'CONNECT WALLET' : `${authedUser.authedUser.address?.substring(0,5)}...${authedUser.authedUser.address?.substring(39,43)}`}
             </button>
