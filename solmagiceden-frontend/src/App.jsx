@@ -1,6 +1,7 @@
 import React, { useState,useEffect,useRef } from 'react';
 import ReactDOM from 'react-dom'
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { getPhantomWallet, PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
 
 import Slider from "react-slick";
 // import moment from 'moment'
@@ -31,15 +32,23 @@ function App() {
 
   const connectWallet = async () => {
     if (Object.keys(authedUser.authedUser).length === 0){
-        if (window.solana){
-            let r = await window.solana.connect();
-            console.log(r.publicKey.toBase58());
-            console.log(loginUserReq);
-            dispatch(loginUserReq(r.publicKey.toBase58()));
-        }
-        else{
-            alert('Install Wallet');
-        }
+
+      // if (window.solana){
+      try{
+        let wallet = new PhantomWalletAdapter();
+        await wallet.connect();
+        console.log(wallet);
+        console.log(wallet._wallet.publicKey.toString());
+        console.log(loginUserReq);
+        dispatch(loginUserReq(wallet._wallet.publicKey.toString()));  
+      }
+      catch(e){
+        alert('Unable to connect, try again!');
+      }
+      // }
+        // else{
+        //     alert('Install Wallet');
+        // }
     }
     else{
         navigate(`/profile/${authedUser.authedUser.address}`);
