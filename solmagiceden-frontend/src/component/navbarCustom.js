@@ -1,14 +1,15 @@
 import React from "react";
 import searchIcon from '../images/searchIcon.svg'
+import { Link } from 'react-router-dom';
 
 export const NavbarCustom = ({connectWallet, authedUser}) => {
   return (
         <nav className="navbar navbar-light navbar-expand-lg  row mx-0  navFont pr-0 ai-center-lg"  style={{alignItems: 'flex-start'}}>
           <div className=" col-md-4 col-lg-3 col-2 col-auto text-center p-0">
-            <a className="navbar-brand p-0" style={{marginTop: '-6px'}} href="/">
+            <Link className="navbar-brand p-0" style={{marginTop: '-6px'}} to="/">
                 <h3 className="">Logo</h3>
                 {/* <img src={Logo} alt="Logo" />  */}
-            </a>
+            </Link>
           </div>
           <div className="order-md-2 order-3 toggle-icon-custom">
               <button className="navbar-toggler btn-btn-toggle" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +26,11 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
           
           <div className="col-lg-auto  text-center order-md-3 order-1 connect-wallet-small px-0">
             <button className="btn color-white connectWalletBtn" onClick={connectWallet} >
-              {Object.keys(authedUser.authedUser).length === 0 ? 'CONNECT WALLET' : `${authedUser.authedUser.address?.substring(0,5)}...${authedUser.authedUser.address?.substring(39,43)}`}
+              {Object.keys(authedUser.authedUser).length === 0 ? 'CONNECT WALLET' : <>
+              <img src={`${process.env.REACT_APP_BASE_URL}/${authedUser.authedUser.profilepic}`} style={{borderRadius: '50%', height: '30px', width: '30px'}} />{` `}
+              {authedUser.authedUser.username ? authedUser.authedUser.username : `${authedUser.authedUser.address?.substring(0,5)}...${authedUser.authedUser.address?.substring(39,43)}`}
+              </>
+              }
             </button>
             
           </div>
