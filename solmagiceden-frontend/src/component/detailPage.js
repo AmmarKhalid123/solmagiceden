@@ -157,15 +157,15 @@ function DetailPage() {
                         </div>
                         ) : (<></>)}
                         {user.discord ? (
-                        <div className="writeReviewDiv ml-2" onClick={() => openWindow(user.discord)}>
-                            <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} />
+                        <div className="writeReviewDiv ml-2" >
+                            <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
                               <input type="file" />
                             </label>
                         </div>
                         ) : (<></>)}
                         {user.twitter ? (
-                          <div className="writeReviewDiv ml-2" onClick={() => openWindow(user.twitter)}>
-                            <label className="editProfBtn" > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} />
+                          <div className="writeReviewDiv ml-2" onClick={() => openWindow(`https://twitter.com/${user.twitter}`)}>
+                            <label className="editProfBtn" > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}
                               <input type="file" />
                             </label>
                           </div>
