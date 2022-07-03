@@ -12,7 +12,7 @@
         scroll-behavior: smooth;
     }
     body{
-        background-Color: #080027;
+        background-color: #080027;
     }
     h1,h2,h3,h4,h5,h6{
         /* font-family: MariWeather !important; */
@@ -35,7 +35,7 @@
         color: #080027 !important;
     }
     .backgr-color{
-        background-color: black !important;
+        background-color: #0A0912 !important;
     }
     h1{
         color: white; 
