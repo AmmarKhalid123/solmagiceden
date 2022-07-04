@@ -221,8 +221,14 @@
   margin:10px 5px;
 }
 
-
-
+.user-icon-circle{
+    padding: 0px !important;
+    border: 0px;
+}
+.user-icon-circle::after{
+    display: none !important;
+}
+  
 
 .slide-heading{
 /* font-family: Somerton Dense; */
