@@ -124,11 +124,16 @@
       }
       .navbar {
         padding: 1rem !important;
+        z-index: 1;
       }
     .navbar .connectWalletBtn {
         background-color: white;
         color: black !important;
         font-weight: bold;
+    }
+    .navbar .dropdown-menu  {
+        background-color: black;
+        
     }
     .navbar .inputDiv {
         background: rgba(255, 255, 255, 0.01);
@@ -705,6 +710,9 @@ input[type="file"] {
     overflow: hidden;
     position: relative;
   }
+  .homeMain .bannerSec .slick-list {
+    /* z-index: -1; */
+  }
   .homeMain .bannerSec .bannerImgDiv img{
     width: 100%;
   }
@@ -793,6 +801,14 @@ input[type="file"] {
     padding: 3px;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5);
+  }
+  .homeMain .mostpopularSec .HeadingMain .col1 .filterTime .item:focus{
+    background: black;
+    box-shadow: none;
+  }
+  .homeMain .mostpopularSec .HeadingMain .col1 .filterTime .item:hover{
+    background: black;
+    box-shadow: none;
   }
   .homeMain .mostpopularSec .popularSlider {
     margin-top: 20px;
