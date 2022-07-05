@@ -89,15 +89,6 @@ function DetailPage() {
     window.open(url.startsWith('http') ? url : `https://${url}`);
   }
 
-  const unLinkDisc = () => {
-    if (authedUser.authedUser.address === user.address){
-      dispatch(unLinkDiscord(authedUser.authedUser._id))
-      .then(res => {
-        setUser(res.payload);
-      })
-    }
-  }
-
   if (loadingUser){
     return(
       <>
@@ -165,19 +156,19 @@ function DetailPage() {
                           <div className="editProfBtn" >Edit Profile <img className='ml-2' src={editIcon} alt="" /> </div>
                         </div>
                         ) : (<></>)}
-                        {user.discord ? (
-                        <div className="writeReviewDiv ml-2" onClick={unLinkDisc}>
+                        {user.discord && (
+                        <div className="writeReviewDiv ml-2">
                             <div className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
                             </div>
                         </div>
-                        
-                        ) : (
+                        )} 
+                        {!user.discord && authedUser.authedUser.address === user.address ? (
                           <div className="writeReviewDiv ml-2" onClick={() => window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")} >
                             <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> Link Discord
                               <input type="file" />
                             </label>
                           </div>
-                        )}
+                        ) : (<></>)}
                         {user.twitter ? (
                           <div className="writeReviewDiv ml-2" onClick={() => openWindow(`https://twitter.com/${user.twitter}`)}>
                             <label className="editProfBtn" > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}
@@ -213,7 +204,7 @@ function DetailPage() {
                         </div>
                 </div>
               </div>
-            <EditProfileModal show={show} handleClose={handleClose} setUser={setUser} />
+            <EditProfileModal show={show} handleClose={handleClose} setUser={setUser} user={user} />
         </>
     );
   }

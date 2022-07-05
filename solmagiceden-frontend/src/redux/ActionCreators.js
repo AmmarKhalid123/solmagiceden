@@ -27,6 +27,7 @@ export const setDiscordUser = (code, uid) => dispatch => {
       return res.json();
     })
     .then(r => {
+      console.log(r);
       if (r.success){
         return dispatch(loginUser(r.user));
       }

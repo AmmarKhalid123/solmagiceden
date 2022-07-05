@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import searchIcon from '../images/searchIcon.svg'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Modal } from "react-bootstrap";
 import { logoutUser } from '../redux/ActionCreators';
 
 
 export const NavbarCustom = ({connectWallet, authedUser}) => {
   const [isOpen, setOpen] = useState(false);
+  const [connectWalletModal, setConnectWalletModal] = useState(false);
   const toggle = () => setOpen(!isOpen);
 
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
                     </Dropdown.Menu>
                 </Dropdown>
               ) : (
-              <button className="btn color-white connectWalletBtn" onClick={connectWallet} >
+              <button className="btn color-white connectWalletBtn" onClick={() => setConnectWalletModal(true)} >
                 Connect Wallet
               </button>
               )}
@@ -72,6 +73,29 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
               }
             </button> */}
           </div>
+          <Modal show={connectWalletModal} onHide={() => setConnectWalletModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Connect Wallet</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div onClick={() => {connectWallet('phantom', () => setConnectWalletModal(false));}} style={{color: 'white', fontSize: '20px', border: '1px solid', borderRadius: '15px', padding: '10px 5px', margin: '15px auto', display: 'flex', cursor: 'pointer'}}>
+                <span style={{margin: 'auto'}}>
+                  Phantom
+                </span>
+              </div>
+              <div onClick={() => {connectWallet('solflare', () => setConnectWalletModal(false));}} style={{color: 'white', fontSize: '20px', border: '1px solid', borderRadius: '15px', padding: '10px 5px', margin: '15px auto', display: 'flex', cursor: 'pointer'}}>
+                <span style={{margin: 'auto'}}>
+                  Solflare
+                </span>
+              </div>
+              <div onClick={() => {connectWallet('slope', () => setConnectWalletModal(false));}} style={{color: 'white', fontSize: '20px', border: '1px solid', borderRadius: '15px', padding: '10px 5px', margin: '15px auto', display: 'flex', cursor: 'pointer'}}>
+                <span style={{margin: 'auto'}}>
+                  Slope
+                </span>
+              </div>
+            </Modal.Body>
+          </Modal>
+
         </nav>
   )
 };

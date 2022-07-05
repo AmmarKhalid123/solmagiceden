@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Modal,Button} from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserProfile } from "../redux/ActionCreators";
+import { updateUserProfile, unLinkDiscord } from "../redux/ActionCreators";
 
 function onlyNumbers(str) {
   return /^[0-9]+$/.test(str);
@@ -39,7 +39,7 @@ let twitterNameValid = async (twitter) => {
   }
 }
 
-export default function EditProfileModal({show, handleClose, setUser}){
+export default function EditProfileModal({show, handleClose, setUser, user}){
   const authedUser = useSelector(state => state.authedUser);
   const dispatch = useDispatch();
   const [updateLoader, setUpdateLoader] = useState(false);
@@ -85,6 +85,20 @@ export default function EditProfileModal({show, handleClose, setUser}){
     }
   }
 
+  const unLinkDisc = () => {
+    if (authedUser.authedUser.address === user.address){
+      if (user.discord){
+        dispatch(unLinkDiscord(authedUser.authedUser._id))
+        .then(res => {
+          setUser(res.payload);
+        })  
+      }
+      else{
+        window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")
+      }
+    }
+  }
+
   return(
     <Modal show={show} onHide={handleClose}>
     <Modal.Header closeButton>
@@ -102,6 +116,8 @@ export default function EditProfileModal({show, handleClose, setUser}){
           <input type="text" className="form-control" id="twitter-edit" defaultValue={authedUser.authedUser.twitter} placeholder="Twitter" />
         </div>
         <button disabled={updateLoader} className='btn editBtn' onClick={updateUserDetails}>{updateLoader ? 'Loading...' : 'Submit'}</button>
+
+        <button disabled={updateLoader} className='btn editBtn mt-3' onClick={unLinkDisc}>{user.discord ? 'Unlink Discord' : 'Link Discord'}</button>
       </div>
     </Modal.Body>
   </Modal>

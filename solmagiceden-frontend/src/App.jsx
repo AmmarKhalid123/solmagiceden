@@ -1,7 +1,7 @@
 import React, { useState,useEffect,useRef } from 'react';
 import ReactDOM from 'react-dom'
 import { Routes, Route, Link, useNavigate, useParams, useSearchParams, Navigate, useLocation } from "react-router-dom";
-import { getPhantomWallet, PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { getPhantomWallet, PhantomWalletAdapter, SlopeWalletAdapter, SolflareWalletAdapter } from "@solana/wallet-adapter-wallets";
 
 import Slider from "react-slick";
 // import moment from 'moment'
@@ -68,17 +68,37 @@ function App() {
   const loc = useLocation();
   console.log(loc);
 
-  const connectWallet = async () => {
+  const connectWallet = async (wallet, cb) => {
     if (Object.keys(authedUser.authedUser).length === 0){
 
       // if (window.solana){
       try{
-        let wallet = new PhantomWalletAdapter();
-        await wallet.connect();
-        console.log(wallet);
-        console.log(wallet._wallet.publicKey.toString());
-        console.log(loginUserReq);
-        dispatch(loginUserReq(wallet._wallet.publicKey.toString()));  
+        let address = '';
+        if (wallet === 'phantom'){
+          let wallet = new PhantomWalletAdapter();
+          await wallet.connect();
+          console.log(wallet);
+          console.log(wallet._wallet.publicKey.toString());
+          address = wallet._wallet.publicKey.toString();
+        }
+        else if (wallet === 'slope'){
+          let wallet = new SlopeWalletAdapter();
+          await wallet.connect();
+          console.log(wallet);
+          console.log(wallet._publicKey.toString());  
+          address = wallet._publicKey.toString();
+        }
+        else if (wallet === 'solflare'){
+          let wallet = new SolflareWalletAdapter();
+          await wallet.connect();
+          console.log(wallet);
+          console.log(wallet._wallet.publicKey.toString());  
+          address = wallet._wallet.publicKey.toString();
+        }
+        dispatch(loginUserReq(address));
+        if (cb){
+          cb();
+        }
       }
       catch(e){
         console.log(e);
