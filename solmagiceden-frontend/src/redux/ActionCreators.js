@@ -91,14 +91,13 @@ export const uploadCoverImage = (img, address) => dispatch => {
   })
 }
 
-export const updateUserProfile = (username, discord, twitter, uid) => dispatch => {
+export const updateUserProfile = (username, twitter, uid) => dispatch => {
   return fetch(`${process.env.REACT_APP_BASE_URL}/users/update-profile-details`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      discord,
       twitter,
       username,
       uid

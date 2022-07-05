@@ -213,11 +213,10 @@ router.put('/update-cover', cors.corsWithOptions, uploadCover.single('coverImg')
 router.put('/update-profile-details', cors.corsWithOptions, async (req,res,next) => {
   let uid = req.body.uid;
   let username = req.body.username;
-  let discord = req.body.discord;
   let twitter = req.body.twitter;
   let usr = await User.findOne({_id: req.body.uid});
   if (usr){
-    let updated_user = await User.findOneAndUpdate({_id: usr._id}, {$set: {username: username, discord: discord, twitter: twitter}}, {new: true});
+    let updated_user = await User.findOneAndUpdate({_id: usr._id}, {$set: {username: username, twitter: twitter}}, {new: true});
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.json({success: true, updated_user: updated_user});  

@@ -46,13 +46,13 @@ export default function EditProfileModal({show, handleClose, setUser}){
   const updateUserDetails = async () => {
     setUpdateLoader(true);
     let uname = document.getElementById('uname-edit').value;
-    let discord = document.getElementById('discord-edit').value;
+    // let discord = document.getElementById('discord-edit').value;
     let twitter = document.getElementById('twitter-edit').value;
     if (uname){
-      discord = discord ? discord : '';
+      // discord = discord ? discord : '';
       twitter = twitter ? twitter : '';
-      console.log(uname, discord, twitter, authedUser.authedUser._id);
-      if (discordValid(discord)){
+      console.log(uname, twitter, authedUser.authedUser._id);
+      // if (discordValid(discord)){
         let tValid;
         try{
           tValid = await twitterNameValid(twitter);
@@ -62,7 +62,7 @@ export default function EditProfileModal({show, handleClose, setUser}){
           tValid = true;
         }
         if (tValid){
-          dispatch(updateUserProfile(uname, discord, twitter, authedUser.authedUser._id))
+          dispatch(updateUserProfile(uname, twitter, authedUser.authedUser._id))
           .then(r => {
             setUser(r.payload)
             alert('Success');
@@ -73,11 +73,11 @@ export default function EditProfileModal({show, handleClose, setUser}){
           alert('Twitter name invalid');
           setUpdateLoader(false);
         }
-      }
-      else{
-        alert('Discord username invalid');
-        setUpdateLoader(false);
-      }
+      // }
+      // else{
+      //   alert('Discord username invalid');
+      //   setUpdateLoader(false);
+      // }
     }
     else{
       alert('Username is required');
@@ -95,9 +95,9 @@ export default function EditProfileModal({show, handleClose, setUser}){
         <div className="form-group">
           <input type="text" className="form-control" id="uname-edit" defaultValue={authedUser.authedUser.username} placeholder="Username*" />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <input type="text" className="form-control" id="discord-edit" defaultValue={authedUser.authedUser.discord} placeholder="Discord Username: abcdefg#0000" />
-        </div>
+        </div> */}
         <div className="form-group">
           <input type="text" className="form-control" id="twitter-edit" defaultValue={authedUser.authedUser.twitter} placeholder="Twitter" />
         </div>
