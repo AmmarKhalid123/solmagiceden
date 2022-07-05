@@ -14,7 +14,7 @@ import art1 from "../images/art1.png"
 import profile1 from "../images/profile1.jpg"
 // import Slider1 from '../component/slickSlider';  
 import { NavbarCustom } from './navbarCustom';
-import { loginUserReq, uploadCoverImage, uploadProfileImage } from '../redux/ActionCreators';
+import { loginUserReq, unLinkDiscord, uploadCoverImage, uploadProfileImage } from '../redux/ActionCreators';
 import EditProfileModal from './editProfileModal';
 
 var moment = require('moment-timezone');
@@ -89,6 +89,15 @@ function DetailPage() {
     window.open(url.startsWith('http') ? url : `https://${url}`);
   }
 
+  const unLinkDisc = () => {
+    if (authedUser.authedUser.address === user.address){
+      dispatch(unLinkDiscord(authedUser.authedUser._id))
+      .then(res => {
+        setUser(res.payload);
+      })
+    }
+  }
+
   if (loadingUser){
     return(
       <>
@@ -157,12 +166,18 @@ function DetailPage() {
                         </div>
                         ) : (<></>)}
                         {user.discord ? (
-                        <div className="writeReviewDiv ml-2" >
-                            <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
+                        <div className="writeReviewDiv ml-2" onClick={unLinkDisc}>
+                            <div className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
+                            </div>
+                        </div>
+                        
+                        ) : (
+                          <div className="writeReviewDiv ml-2" onClick={() => window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")} >
+                            <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> Link Discord
                               <input type="file" />
                             </label>
-                        </div>
-                        ) : (<></>)}
+                          </div>
+                        )}
                         {user.twitter ? (
                           <div className="writeReviewDiv ml-2" onClick={() => openWindow(`https://twitter.com/${user.twitter}`)}>
                             <label className="editProfBtn" > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}

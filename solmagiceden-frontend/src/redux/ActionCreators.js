@@ -14,6 +14,45 @@ export const logoutUser = (u) => ({
   type: ActionTypes.LOGGED_OUT,
 });
 
+export const setDiscordUser = (code, uid) => dispatch => {
+  return fetch(`${process.env.REACT_APP_BASE_URL}/users/discord`, {
+    method: 'PUT',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({code, uid})
+  })
+    .then(res => {
+      console.log(res);
+      return res.json();
+    })
+    .then(r => {
+      if (r.success){
+        return dispatch(loginUser(r.user));
+      }
+    });
+};
+
+
+export const unLinkDiscord = (id) => dispatch => {
+  return fetch(`${process.env.REACT_APP_BASE_URL}/users/unlink-discord`, {
+    method: 'PUT',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({id})
+  })
+    .then(res => {
+      console.log(res);
+      return res.json();
+    })
+    .then(r => {
+      if (r.success){
+        return dispatch(updateUser(r.user));
+      }
+    });
+};
+
 export const loginUserReq = (address) => dispatch => {
   return fetch(`${process.env.REACT_APP_BASE_URL}/users/exists/${address}`)
     .then(res => {

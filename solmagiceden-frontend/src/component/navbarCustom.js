@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import searchIcon from '../images/searchIcon.svg'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Dropdown } from "react-bootstrap";
+import { logoutUser } from '../redux/ActionCreators';
+
 
 export const NavbarCustom = ({connectWallet, authedUser}) => {
   const [isOpen, setOpen] = useState(false);
   const toggle = () => setOpen(!isOpen);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutUserReq = () => {
+    dispatch(logoutUser());
+  }
 
   return (
         <nav className="navbar navbar-light navbar-expand-lg  row mx-0  navFont pr-0 ai-center-lg"  style={{alignItems: 'flex-start'}}>
@@ -40,33 +50,14 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
                       </button>
                     </Dropdown.Toggle>
                     <Dropdown.Menu right>
-                        <Dropdown.Item>
-                            <NavLink id="navbar-link" exact={true} to={`/profile/${authedUser.authedUser.address}`} className="nav-link nav-item text-center" style={{borderBottom:'1px solid white'}}>Profile</NavLink>
+                        <Dropdown.Item style={{padding: '0px', color: 'white', textAlign: 'center'}} onClick={() => navigate(`/profile/${authedUser.authedUser.address}`)}>
+                          Profile
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                            <NavLink id="navbar-link" exact={true} to="/settings" className="nav-link nav-item text-center px-2 pt-1"  style={{borderBottom:'1px solid white'}}>Account Settings</NavLink>
-                        </Dropdown.Item>
-                        {authedUser.authedUser.premium ? (
-                            <>
-                                <Dropdown.Item>
-                                    <NavLink id="navbar-link" exact={true} to="/create-project" className="nav-link nav-item text-center px-2 pt-1"  style={{borderBottom:'1px solid white'}}>Create Project</NavLink>
-                                </Dropdown.Item>
-                                <Dropdown.Item>
-                                    <NavLink id="navbar-link" exact={true} to="/bulk-collection-create" className="nav-link nav-item text-center px-2 pt-1"  style={{borderBottom:'1px solid white'}}>Create Bulk Collection</NavLink>
-                                </Dropdown.Item>
-                            </>
-                        ) : (<></>)}
-                        <Dropdown.Item>
-                            <NavLink id="navbar-link-create-collection" activeClassName="" exact={true} to="/create-collection" style={{borderBottom:'1px solid white'}} className="nav-link text-center nav-item px-2 pt-1">Create Collection</NavLink>
-                        </Dropdown.Item>
-                        {/* <DropdownItem>
-                            <NavLink id="navbar-link-create-collection" activeClassName="" exact={true} to="/create-solana" style={{borderBottom:'1px solid white'}} className="nav-link text-center nav-item px-2 pt-1">Create Solana</NavLink>
-                        </DropdownItem> */}
-                        <Dropdown.Item>
-                            <NavLink id="navbar-link-create-collection" activeClassName="" exact={true} to="/create-collection-solana" className="nav-link text-center nav-item px-2 pt-1">Create Solana Collection</NavLink>
+                        <Dropdown.Item style={{padding: '0px', color: 'white', textAlign: 'center'}} onClick={() => logoutUserReq()}>
+                            {/* <NavLink id="navbar-link" exact={true} to="/settings" className="nav-link nav-item text-center" >Logout</NavLink> */}
+                            Logout
                         </Dropdown.Item>
                     </Dropdown.Menu>
-                    
                 </Dropdown>
               ) : (
               <button className="btn color-white connectWalletBtn" onClick={connectWallet} >

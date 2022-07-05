@@ -2,9 +2,12 @@ var express = require('express');
 var crypto = require('crypto');
 var fs = require('fs');
 var multer = require('multer');
+var axios = require('axios');
+var qs = require('qs');
 
 var User = require('../models/user');
 var cors = require('./cors');
+var configg = require('../config');
 
 var router = express.Router();
 
@@ -79,6 +82,85 @@ router.get('/exists/:address', cors.corsWithOptions, async (req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.json({success: true, user: userExist});
+  }
+});
+
+router.put('/unlink-discord', cors.corsWithOptions, async (req, res, next) => {
+  let id = req.body.id;
+
+  let usr = await User.findOneAndUpdate({_id: id}, {$set: {discord: ''}}, {new: true});
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.json({success: true, user: usr});
+})
+
+router.put('/discord', cors.corsWithOptions, async (req, res, next) => {
+  let code = req.body.code;
+  let uid = req.body.uid;
+
+  let usr = await User.findOne({_id: uid});
+  if (usr){
+    
+    var data = qs.stringify({
+      'client_id': '993116062616920144',
+      'client_secret': configg.DISCORD_CLIENT_SECRET,
+      'grant_type': 'authorization_code',
+      'code': code,
+      'redirect_uri': 'http://localhost:3001/'
+    });
+    var config = {
+      method: 'post',
+      url: 'https://discord.com/api/oauth2/token',
+      headers: { 
+        'Content-Type': 'application/x-www-form-urlencoded', 
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log("access success", response.data);
+      console.log(response.data.access_token);
+
+      var config_user = {
+        method: 'get',
+        url: 'https://discordapp.com/api/users/@me',
+        headers: { 
+          'Authorization': `Bearer ${response.data.access_token}`,
+        }
+      };
+      
+      axios(config_user)
+      .then(async function (response) {
+        console.log("user res");
+        console.log("raw", response.data);
+        console.log(JSON.stringify(JSON.stringify(response.data)));
+        let discusername = `${response.data.username}#${response.data.discriminator}`
+        console.log(discusername);
+        let upd_usr = await User.findOneAndUpdate({_id: uid}, {$set: {discord: discusername}}, {new: true});
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({success: true, user: upd_usr});
+      })
+      .catch(function (error) {
+        console.log(error);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({success: false, msg: 'Invalid Access Token'});
+      });
+      
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({success: false, msg: 'Invalid Code'});
+    });
+  }
+  else{
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json({success: false, msg: 'Invalid State'});
   }
 });
 

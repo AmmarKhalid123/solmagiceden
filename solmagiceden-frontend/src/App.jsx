@@ -1,6 +1,6 @@
 import React, { useState,useEffect,useRef } from 'react';
 import ReactDOM from 'react-dom'
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, useParams, useSearchParams, Navigate, useLocation } from "react-router-dom";
 import { getPhantomWallet, PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
 
 import Slider from "react-slick";
@@ -17,18 +17,56 @@ import { DetailPage } from './component/detailPage';
 import { HomePage } from './component/home';
 import { NavbarCustom } from './component/navbarCustom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserReq } from './redux/ActionCreators';
+import { loginUserReq, setDiscordUser } from './redux/ActionCreators';
+import axios from 'axios';
+import qs from 'qs';
+
+const DiscordFetch = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  console.log(searchParams.get('code'));
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (searchParams.get('code')){
+      dispatch(setDiscordUser(searchParams.get('code'), searchParams.get('state')))
+      .then(res => {
+        console.log(res, res.type === 'LOGGED_IN');
+        if (res.type === 'LOGGED_IN'){
+          navigate(`/profile/${res.payload.address}`);
+        }
+        else{
+          navigate('/');
+        }
+      });
+    }
+  }, []);
+
+  if (searchParams.get('code')){
+    return(
+      // <Navigate to={`/profile/${searchParams.get('state')}`} />
+      <></>
+    );
+  }
+  else{
+    return(
+      <Navigate to='/'/>
+    );  
+  }
+}
 
 
 
 // import Slider1 from './component/slickSlider';  
 
 function App() {
-
   const authedUser = useSelector(state => state.authedUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const loc = useLocation();
+  console.log(loc);
 
   const connectWallet = async () => {
     if (Object.keys(authedUser.authedUser).length === 0){
@@ -62,6 +100,7 @@ function App() {
     <Routes>
         <Route path="/profile/:address" element={<DetailPage />} />
         <Route path="/" element={<HomePage /> } />
+        <Route path="/discord/" element={<DiscordFetch connectWallet={connectWallet} /> } />
       </Routes>
   </>
     
