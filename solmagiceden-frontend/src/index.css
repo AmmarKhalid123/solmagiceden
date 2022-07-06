@@ -233,6 +233,10 @@
 .user-icon-circle::after{
     display: none !important;
 }
+.no-pl{
+    padding-left: 7px !important;
+}
+
 #discord-username-btn{
     padding: 0px !important;
     border: 0px;

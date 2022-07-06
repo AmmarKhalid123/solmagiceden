@@ -175,33 +175,33 @@ function DetailPage() {
                           <>
                           <Dropdown className="discord-uname" isOpen={isDiscordOpen}>
                             <Dropdown.Toggle id="discord-username-btn">
-                              <div className="writeReviewDiv ml-2">
-                                  <div className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
+                              <div className="writeReviewDiv ml-2" style={{paddingLeft: '0px'}}>
+                                  <div className="editProfBtn no-pl" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
                                   </div>
                               </div>
                             </Dropdown.Toggle>
                             <Dropdown.Menu id="unlinc-disc-btn">
-                              <Dropdown.Item onClick={() => unLinkDisc()} id="unlinc-disc-btn-link">
+                              <Dropdown.Item onClick={() => unLinkDisc()}  id="unlinc-disc-btn-link">
                                 Unlink Discord
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
                           </>
-                        ) : (<div className="writeReviewDiv ml-2">
-                            <div className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
+                        ) : (<div className="writeReviewDiv ml-2" style={{paddingLeft: '0px'}}>
+                            <div className="editProfBtn no-pl" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
                             </div>
                         </div>)
                         )} 
                         {!user.discord && authedUser.authedUser.address === user.address ? (
-                          <div className="writeReviewDiv ml-2" onClick={() => window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")} >
-                            <label className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> Link Discord
+                          <div className="writeReviewDiv ml-2" style={{paddingLeft: '0px'}} onClick={() => window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")} >
+                            <label className="editProfBtn no-pl" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> Link Discord
                               <input type="file" />
                             </label>
                           </div>
                         ) : (<></>)}
                         {user.twitter ? (
                           <div className="writeReviewDiv ml-2" onClick={() => openWindow(`https://twitter.com/${user.twitter}`)}>
-                            <label className="editProfBtn" > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}
+                            <label className="editProfBtn no-pl" style={{paddingLeft: '0px'}} > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}
                               <input type="file" />
                             </label>
                           </div>
