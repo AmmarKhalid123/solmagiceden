@@ -54,7 +54,7 @@ export const unLinkDiscord = (id) => dispatch => {
     });
 };
 
-export const loginUserReq = (address) => dispatch => {
+export const loginUserReq = (address, wallet) => dispatch => {
   return fetch(`${process.env.REACT_APP_BASE_URL}/users/exists/${address}`)
     .then(res => {
       console.log(res);
@@ -62,6 +62,7 @@ export const loginUserReq = (address) => dispatch => {
     })
     .then(r => {
       if (r.success){
+        r.user.wallet = wallet;
         return dispatch(loginUser(r.user));
       }
       else{

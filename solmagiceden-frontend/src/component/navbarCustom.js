@@ -4,7 +4,9 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Dropdown, Modal } from "react-bootstrap";
 import { logoutUser } from '../redux/ActionCreators';
-
+import PhantomLogo from '../images/phantom.png'
+import {ReactComponent as SolflareLogo} from '../images/solflare.svg'
+import {ReactComponent as SlopeLogo} from '../images/slope.svg'
 
 export const NavbarCustom = ({connectWallet, authedUser}) => {
   const [isOpen, setOpen] = useState(false);
@@ -79,18 +81,33 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
             </Modal.Header>
             <Modal.Body>
               <div onClick={() => {connectWallet('phantom', () => setConnectWalletModal(false));}} style={{color: 'white', fontSize: '20px', border: '1px solid', borderRadius: '15px', padding: '10px 5px', margin: '15px auto', display: 'flex', cursor: 'pointer'}}>
-                <span style={{margin: 'auto'}}>
+                
+                <img src={PhantomLogo} style={{height: '50px', width: '50px'}} />
+                <span style={{margin : 'auto'}}>
                   Phantom
+                </span>
+                <span style={{marginTop: 'auto', fontSize: '10px', marginBottom: 'auto', marginRight: '5px'}}>
+                  {window.phantom ? 'DETECTED' : ''}
                 </span>
               </div>
               <div onClick={() => {connectWallet('solflare', () => setConnectWalletModal(false));}} style={{color: 'white', fontSize: '20px', border: '1px solid', borderRadius: '15px', padding: '10px 5px', margin: '15px auto', display: 'flex', cursor: 'pointer'}}>
+                <SolflareLogo />
                 <span style={{margin: 'auto'}}>
                   Solflare
                 </span>
+                
+                <span style={{marginTop: 'auto', fontSize: '10px', marginBottom: 'auto', marginRight: '5px'}}>
+                  {window.solflare ? 'DETECTED' : ''}
+                </span>
               </div>
               <div onClick={() => {connectWallet('slope', () => setConnectWalletModal(false));}} style={{color: 'white', fontSize: '20px', border: '1px solid', borderRadius: '15px', padding: '10px 5px', margin: '15px auto', display: 'flex', cursor: 'pointer'}}>
+                <SlopeLogo style={{height: '50px', width: '50px'}} />
                 <span style={{margin: 'auto'}}>
                   Slope
+                </span>
+                
+                <span style={{marginTop: 'auto', fontSize: '10px', marginBottom: 'auto', marginRight: '5px'}}>
+                  {window.Slope ? 'DETECTED' : ''}
                 </span>
               </div>
             </Modal.Body>

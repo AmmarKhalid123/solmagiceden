@@ -95,7 +95,7 @@ function App() {
           console.log(wallet._wallet.publicKey.toString());  
           address = wallet._wallet.publicKey.toString();
         }
-        dispatch(loginUserReq(address));
+        dispatch(loginUserReq(address, wallet));
         if (cb){
           cb();
         }
@@ -113,6 +113,14 @@ function App() {
         navigate(`/profile/${authedUser.authedUser.address}`);
     }
   }
+
+  useEffect(() => {
+    if (sessionStorage.getItem('auth')){
+      setTimeout(() => {
+        connectWallet(sessionStorage.getItem('auth'));
+      }, 1000);
+    }
+  }, []);
 
   return (
   <>
