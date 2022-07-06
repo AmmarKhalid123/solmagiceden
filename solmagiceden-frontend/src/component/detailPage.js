@@ -7,7 +7,7 @@ import b1 from "../images/b1.jpg"
 import solanaImg from "../images/solana.png"
 import discordIcon from "../images/discord.png"
 import twitterIcon from "../images/twitter.png"
-import {Modal,Button} from 'react-bootstrap'
+import {Modal,Button, Dropdown} from 'react-bootstrap'
 
 import metamask from "../images/metamask.png"
 import art1 from "../images/art1.png"
@@ -27,6 +27,7 @@ function DetailPage() {
   const [user, setUser] = useState({});
   const [loadingUser, setLoadingUser] = useState(true);
   const [show, setShow] = useState(false);
+  const [isDiscordOpen, setDiscordDD] = useState(false);
 
   const handleClose = () => {
     setShow(false);
@@ -52,6 +53,19 @@ function DetailPage() {
 
   let navigate = useNavigate();
 
+  const unLinkDisc = () => {
+    if (authedUser.authedUser.address === user.address){
+      if (user.discord){
+        dispatch(unLinkDiscord(authedUser.authedUser._id))
+        .then(res => {
+          setUser(res.payload);
+        })  
+      }
+      else{
+        window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")
+      }
+    }
+  }
 
   const changeCover = () => {
     if (user.address === authedUser.authedUser.address){
@@ -157,10 +171,26 @@ function DetailPage() {
                         </div>
                         ) : (<></>)}
                         {user.discord && (
-                        <div className="writeReviewDiv ml-2">
+                        authedUser.authedUser.address === user.address ? (
+                          <>
+                          <Dropdown className="discord-uname" isOpen={isDiscordOpen}>
+                            <Dropdown.Toggle id="discord-username-btn">
+                              <div className="writeReviewDiv ml-2">
+                                  <div className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
+                                  </div>
+                              </div>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu id="unlinc-disc-btn">
+                              <Dropdown.Item onClick={() => unLinkDisc()} id="unlinc-disc-btn-link">
+                                Unlink Discord
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                          </>
+                        ) : (<div className="writeReviewDiv ml-2">
                             <div className="editProfBtn" > <img className='ml-2' src={discordIcon} alt="" height="22" style={{color: 'white'}} /> {user.discord}
                             </div>
-                        </div>
+                        </div>)
                         )} 
                         {!user.discord && authedUser.authedUser.address === user.address ? (
                           <div className="writeReviewDiv ml-2" onClick={() => window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")} >

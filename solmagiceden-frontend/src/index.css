@@ -233,8 +233,28 @@
 .user-icon-circle::after{
     display: none !important;
 }
-  
-
+#discord-username-btn{
+    padding: 0px !important;
+    border: 0px;
+}
+#discord-username-btn::after{
+    display: none !important;
+}
+#discord-username-btn{
+    background-color: transparent !important;
+}
+#discord-username-btn:focus{
+    box-shadow: none !important;
+}
+#unlinc-disc-btn{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+#unlinc-disc-btn-link:hover{
+    background: none;
+}
+#unlinc-disc-btn-link{
+    color: white;
+}
 .slide-heading{
 /* font-family: Somerton Dense; */
 font-style: normal;
@@ -1283,4 +1303,8 @@ text-decoration: none;
 
 .ai-center{
     align-items: center !important;
+}
+
+.discord-uname > .user-icon-circle{
+    background-color: none !important;
 }

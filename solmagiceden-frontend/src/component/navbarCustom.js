@@ -11,7 +11,9 @@ import {ReactComponent as SlopeLogo} from '../images/slope.svg'
 export const NavbarCustom = ({connectWallet, authedUser}) => {
   const [isOpen, setOpen] = useState(false);
   const [connectWalletModal, setConnectWalletModal] = useState(false);
+  const [isConnectDDOpen, setConnectDD] = useState(false);
   const toggle = () => setOpen(!isOpen);
+  const toggleConnectDD = () => setConnectDD(!isConnectDDOpen);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,9 +65,44 @@ export const NavbarCustom = ({connectWallet, authedUser}) => {
                     </Dropdown.Menu>
                 </Dropdown>
               ) : (
-              <button className="btn color-white connectWalletBtn" onClick={() => setConnectWalletModal(true)} >
-                Connect Wallet
-              </button>
+                <Dropdown align="start" isOpen={isConnectDDOpen}>
+                <Dropdown.Toggle className="user-icon-circle">
+                <button className="btn color-white connectWalletBtn">
+                  Connect Wallet
+                </button>
+                </Dropdown.Toggle>
+                <Dropdown.Menu alignRight style={{width: '300px'}}>
+                    <Dropdown.Item style={{padding: '10px 0px', color: 'white', marginBottom: '10px', display: 'flex', borderBottom: '1px solid white'}} onClick={() => {connectWallet('phantom', () => setConnectDD(false));}}>
+                      <img src={PhantomLogo} style={{height: '50px', width: '50px', marginLeft: '15px'}} />
+                      <span style={{marginLeft: '15px'}}>
+                        Phantom
+                      </span>
+                      <span style={{marginTop: 'auto', fontSize: '10px', marginBottom: 'auto', marginRight: '15px', marginLeft: 'auto'}}>
+                        {window.phantom ? 'DETECTED' : ''}
+                      </span>
+                    </Dropdown.Item>
+                    <Dropdown.Item style={{padding: '10px 0px', color: 'white', marginBottom: '10px', display: 'flex', marginTop: '10px', borderBottom: '1px solid white'}} onClick={() => {connectWallet('solflare', () => setConnectDD(false));}}>
+                      <SolflareLogo style={{ marginLeft: '15px' }}/>
+                      <span style={{marginLeft: '15px'}}>
+                        Solflare
+                      </span>
+                      
+                      <span style={{marginTop: 'auto', fontSize: '10px', marginBottom: 'auto', marginRight: '15px', marginLeft: 'auto'}}>
+                        {window.solflare ? 'DETECTED' : ''}
+                      </span>
+                    </Dropdown.Item>
+                    <Dropdown.Item style={{padding: '10px 0px 0px', color: 'white', marginBottom: '10px', display: 'flex', marginTop: '10px'}} onClick={() => {connectWallet('slope', () => setConnectDD(false));}}>
+                      <SlopeLogo style={{height: '50px', width: '50px', marginLeft: '15px'}} />
+                      <span style={{marginLeft: '15px'}}>
+                        Slope
+                      </span>
+                      
+                      <span style={{marginTop: 'auto', fontSize: '10px', marginBottom: 'auto', marginRight: '15px', marginLeft: 'auto'}}>
+                        {window.Slope ? 'DETECTED' : ''}
+                      </span>
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
               )}
             {/* <button className="btn color-white connectWalletBtn" onClick={connectWallet} >
               {Object.keys(authedUser.authedUser).length === 0 ? 'CONNECT WALLET' : <>
