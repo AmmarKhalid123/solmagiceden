@@ -94,6 +94,16 @@ router.put('/unlink-discord', cors.corsWithOptions, async (req, res, next) => {
   res.json({success: true, user: usr});
 })
 
+router.put('/unlink-twitter', cors.corsWithOptions, async (req, res, next) => {
+  let id = req.body.id;
+
+  let usr = await User.findOneAndUpdate({_id: id}, {$set: {twitter: ''}}, {new: true});
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.json({success: true, user: usr});
+})
+
+
 router.put('/discord', cors.corsWithOptions, async (req, res, next) => {
   let code = req.body.code;
   let uid = req.body.uid;

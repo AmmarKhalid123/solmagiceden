@@ -54,6 +54,26 @@ export const unLinkDiscord = (id) => dispatch => {
     });
 };
 
+
+export const unLinkTwitterReq = (id) => dispatch => {
+  return fetch(`${process.env.REACT_APP_BASE_URL}/users/unlink-twitter`, {
+    method: 'PUT',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({id})
+  })
+    .then(res => {
+      console.log(res);
+      return res.json();
+    })
+    .then(r => {
+      if (r.success){
+        return dispatch(updateUser(r.user));
+      }
+    });
+};
+
 export const loginUserReq = (address, wallet) => dispatch => {
   return fetch(`${process.env.REACT_APP_BASE_URL}/users/exists/${address}`)
     .then(res => {

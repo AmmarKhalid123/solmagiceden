@@ -14,7 +14,7 @@ import art1 from "../images/art1.png"
 import profile1 from "../images/profile1.jpg"
 // import Slider1 from '../component/slickSlider';  
 import { NavbarCustom } from './navbarCustom';
-import { loginUserReq, unLinkDiscord, uploadCoverImage, uploadProfileImage } from '../redux/ActionCreators';
+import { loginUserReq, unLinkDiscord, uploadCoverImage, uploadProfileImage, unLinkTwitterReq } from '../redux/ActionCreators';
 import EditProfileModal from './editProfileModal';
 
 var moment = require('moment-timezone');
@@ -63,6 +63,18 @@ function DetailPage() {
       }
       else{
         window.open(`https://discord.com/oauth2/authorize?response_type=code&scope=identify%20guilds%20guilds.members.read&client_id=993116062616920144&state=${authedUser.authedUser._id}`, "_self")
+      }
+    }
+  }
+
+  
+  const unLinkTwitter = () => {
+    if (authedUser.authedUser.address === user.address){
+      if (user.twitter){
+        dispatch(unLinkTwitterReq(authedUser.authedUser._id))
+        .then(res => {
+          setUser(res.payload);
+        })  
       }
     }
   }
@@ -200,11 +212,26 @@ function DetailPage() {
                           </div>
                         ) : (<></>)}
                         {user.twitter ? (
-                          <div className="writeReviewDiv ml-2" onClick={() => openWindow(`https://twitter.com/${user.twitter}`)}>
-                            <label className="editProfBtn no-pl" style={{paddingLeft: '0px'}} > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}
-                              <input type="file" />
-                            </label>
-                          </div>
+                          
+                          <Dropdown className="discord-uname" isOpen={isDiscordOpen}>
+                            <Dropdown.Toggle id="discord-username-btn">
+                              <div className="writeReviewDiv ml-2">
+                                <div className="editProfBtn no-pl" style={{paddingLeft: '0px'}} > <img className='ml-2' src={twitterIcon} alt="" height="22" style={{color: 'white'}} /> {user.twitter}
+                                </div>
+                              </div>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu id="unlinc-disc-btn">
+                              {authedUser.authedUser.address === user.address && (
+                              <Dropdown.Item onClick={() => unLinkTwitter()}  id="unlinc-disc-btn-link">
+                                Unlink Twitter
+                              </Dropdown.Item>
+                              )}
+                              <Dropdown.Item onClick={() => openWindow(`https://twitter.com/${user.twitter}`)} id="unlinc-disc-btn-link">
+                                Open Profile
+                              </Dropdown.Item>
+
+                            </Dropdown.Menu>
+                          </Dropdown>
                         ) : (<></>)}
                       </div>
                     </div>
